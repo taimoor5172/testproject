@@ -14,9 +14,41 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# from django.contrib import admin
+# from django.urls import path
+
+# urlpatterns = [
+#     path("polls/", include("polls.urls")),
+#     path('admin/', admin.site.urls),
+# ]
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path , include
+from notesapp.views import NoteViewSet
+from django.conf.urls import url
 
 urlpatterns = [
+    path("notes/", include("notesapp.urls")),
     path('admin/', admin.site.urls),
 ]
+
+# urlpatterns = [
+#     # the admin path is present by default when you create the Django profject. It is used to access the Django admin panel.
+#     path('admin/', admin.site.urls),
+
+#     # the URLs for your APIs start from here
+#     url(r'^note$', NoteViewSet.as_view(
+#         {
+#             'get': 'retrieve',
+#             'post': 'create',
+#             'put': 'update',
+#             'patch': 'partial_update',
+#             'delete': 'destroy'
+#         }
+#     )),
+#     url(r'^note/all$', NoteViewSet.as_view(
+#         {
+#             'get': 'list',
+#         }
+#     )),
+# ]
